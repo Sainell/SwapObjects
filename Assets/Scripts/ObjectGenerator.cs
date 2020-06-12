@@ -51,6 +51,25 @@ public class ObjectGenerator : MonoBehaviour
         GenerateCenterObject();
     }
 
+    private void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+                if(Physics.Raycast(ray, out hit))
+                {
+                    CheckObjects(hit.transform.tag);
+                }
+            }
+        }
+#endif
+    }
+
     public void GenerateCornerObjects()
     {
         _tempImageList.AddRange(imageList);
@@ -72,7 +91,6 @@ public class ObjectGenerator : MonoBehaviour
     public void GenerateCenterObject()
     {
         _num = Random.Range(0, _usedObjectList.Count);
-     //   img0.sprite = _usedImageList[_num];
         tempCenterObject = Instantiate(_usedObjectList[_num], position0.transform.position, position0.transform.rotation, position0.transform);
         img = tempCenterObject.GetComponent<Image>();
         img.color = new Color(0, 0, 0);
