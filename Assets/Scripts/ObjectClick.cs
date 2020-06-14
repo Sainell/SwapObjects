@@ -4,13 +4,12 @@ using UnityEngine.EventSystems;
 
 public class ObjectClick : MonoBehaviour, IPointerClickHandler
 {
-    public static event Action<string> clickEvent;
+    public static event Action<Transform> clickEvent;
 
-    public string CallObjectTag ()
+    public Transform CallObjectTag ()
     {
-        var tag = gameObject.tag;
-        Debug.Log($"My name is {tag}");
-        return tag;
+        var transform = gameObject.transform;
+        return transform;
     }
 
     public void OnPointerClick(PointerEventData eventData)

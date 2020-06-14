@@ -8,6 +8,8 @@ TagManager:
   - Yellow
   - Green
   - Blue
+  - Exit
+  - SoundSwitcher
   layers:
   - Default
   - TransparentFX

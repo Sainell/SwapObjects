@@ -12,6 +12,11 @@ public class ObjectGenerator : MonoBehaviour
     private int _scoreCount = 0;
     private Image img;
     private GameObject tempCenterObject;
+    private AudioSource _mainSound;
+    private AudioSource _fxSound;
+    private Image[] _soundSwitcher;
+    private AudioClip[] _fxClips = new AudioClip[2];
+    private ParticleSystem[] _fxStars = new ParticleSystem[4];
 
     public List<Sprite> imageList = new List<Sprite>();
 
@@ -21,8 +26,6 @@ public class ObjectGenerator : MonoBehaviour
     public GameObject position3;
     public GameObject position4;
 
-    
-
     public Image img0;
     public Image img1;
     public Image img2;
@@ -31,9 +34,19 @@ public class ObjectGenerator : MonoBehaviour
 
     private void Awake()
     {
+        for(int j=1;j<=4;j++)
+        {
+            _fxStars[j-1]= GameObject.Find($"FxStars{j}").GetComponent<ParticleSystem>();
+        }
+        
         _score = GameObject.Find("score").GetComponent<Text>();
+        _mainSound = GameObject.Find("MainSound").GetComponent<AudioSource>();
+        _fxSound = GameObject.Find("FXSounds").GetComponent<AudioSource>();
+        _soundSwitcher = GameObject.Find("SoundSwitcher").GetComponentsInChildren<Image>();
+        _fxClips[0] = Resources.Load<AudioClip>($"Sounds/right");
+        _fxClips[1] = Resources.Load<AudioClip>($"Sounds/fail");
         ObjectClick.clickEvent += CheckObjects;
-        for (int i = 1; i <= 41; i++)
+        for (int i = 1; i <= 40; i++)
         {
             imageList.Add(Resources.Load<Sprite>($"Images/Animals/{i}"));
         }
@@ -49,10 +62,12 @@ public class ObjectGenerator : MonoBehaviour
     {
         GenerateCornerObjects();
         GenerateCenterObject();
+        _mainSound.Play();
     }
 
     private void Update()
     {
+        
 #if UNITY_ANDROID
         if (Input.touchCount > 0)
         {
@@ -63,7 +78,7 @@ public class ObjectGenerator : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(ray, out hit))
                 {
-                    CheckObjects(hit.transform.tag);
+                    CheckObjects(hit.transform);
                 }
             }
         }
@@ -97,11 +112,57 @@ public class ObjectGenerator : MonoBehaviour
         img.raycastTarget = false;
 
     }
- 
-    public void CheckObjects(string tag)
+
+    public void SoundSwitcher()
     {
-        if (tag.Equals(tempCenterObject.tag))
+        if (_soundSwitcher[0].enabled)
         {
+            SoundOff();
+        }
+        else
+        {
+            SoundOn();
+        }
+    }
+
+    public void SoundOn()
+    {
+        _soundSwitcher[0].enabled = true;
+        _soundSwitcher[1].enabled = false;
+        _mainSound.Play();
+        _fxSound.enabled = true;
+    }
+
+    public void SoundOff()
+    {
+        _soundSwitcher[0].enabled = false;
+        _soundSwitcher[1].enabled = true;
+        _mainSound.Stop();
+        _fxSound.enabled = false;
+    }
+    public void CheckObjects(Transform transform)
+    {
+        if(transform.tag.Equals("Exit"))
+        {
+            Application.Quit();
+        }
+
+        if(transform.tag.Equals("SoundSwitcher"))
+        {
+            SoundSwitcher();
+        }
+
+        if (transform.tag.Equals(tempCenterObject.tag))
+        {
+            foreach (var obj in _fxStars)
+            {
+                if (obj.transform.tag.Equals(tempCenterObject.tag))
+                {
+                    obj.Play();
+                    break;
+                }
+            }
+            
             _scoreCount++;
             Destroy(tempCenterObject);
 
@@ -110,12 +171,16 @@ public class ObjectGenerator : MonoBehaviour
 
             GenerateCornerObjects();
             GenerateCenterObject();
+
+            _fxSound.PlayOneShot(_fxClips[0]);
+          
         }
-        else
+        else if(!transform.tag.Equals("Exit") & !transform.tag.Equals("SoundSwitcher"))
         {
+            _fxSound.PlayOneShot(_fxClips[1]);
             _scoreCount = 0;
-            Debug.Log("Choose other object");
         }
+
 
         _score.text = _scoreCount.ToString();
 
