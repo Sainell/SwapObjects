@@ -21,9 +21,10 @@ public class ObjectGenerator : MonoBehaviour
     private ParticleSystem[] _fxFinish = new ParticleSystem[32];
     private Animator[] _animators = new Animator[4];
     private WaitForSeconds waitTime = new WaitForSeconds(1f);
-    private WaitForSeconds waitTimeFinish = new WaitForSeconds(3f);
+    private WaitForSeconds waitTimeFinish = new WaitForSeconds(7f);
     private bool canClick = true;
     private bool isFinish = false;
+    private BubbleSpawner _bubbleSpawner;
 
     public List<Sprite> imageList = new List<Sprite>();
 
@@ -66,6 +67,7 @@ public class ObjectGenerator : MonoBehaviour
         img4 = position4.GetComponent<Image>();
 
         _usedObjectList = new List<GameObject>{position1, position2,position3,position4};
+        _bubbleSpawner = GameObject.Find("BubbleSpawner").GetComponent<BubbleSpawner>();
     }
     void Start()
     {
@@ -201,13 +203,14 @@ public class ObjectGenerator : MonoBehaviour
                     isFinish = true;
                     delayTime = waitTimeFinish;
                     _fxSound.PlayOneShot(_fxClips[2]);
-                    for(int i=0;i<_fxFinish.Length;i++)
+                    _bubbleSpawner.StartSpawn(500);
+                    for (int i=0;i<_fxFinish.Length;i++)
                     {
                         _fxFinish[i].Play();
                     }
                 }
                 _fxSound.PlayOneShot(_fxClips[0]);
-
+               
                 _usedImageList.Clear();
                 _tempImageList.Clear();
                 

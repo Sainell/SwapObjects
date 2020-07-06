@@ -10,6 +10,7 @@ TagManager:
   - Blue
   - Exit
   - SoundSwitcher
+  - Bubble
   layers:
   - Default
   - TransparentFX
