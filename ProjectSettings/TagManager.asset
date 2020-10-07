@@ -11,6 +11,7 @@ TagManager:
   - Exit
   - SoundSwitcher
   - Bubble
+  - Play
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,7 @@ public class ObjectGenerator : MonoBehaviour
     private bool canClick = true;
     private bool isFinish = false;
     private BubbleSpawner _bubbleSpawner;
+    private GameObject _playButton;
 
     public List<Sprite> imageList = new List<Sprite>();
 
@@ -33,6 +34,7 @@ public class ObjectGenerator : MonoBehaviour
     public GameObject position2;
     public GameObject position3;
     public GameObject position4;
+    public GameObject Text;
 
     public Image img0;
     public Image img1;
@@ -47,6 +49,7 @@ public class ObjectGenerator : MonoBehaviour
             _fxStars[j-1]= GameObject.Find($"FxStars{j}").GetComponent<ParticleSystem>();
             _animators[j-1] = GameObject.Find($"Position{j}").GetComponent<Animator>();
         }
+        _playButton = GameObject.Find("Play").gameObject;
         _fxFinish = GameObject.Find("FxFinish").GetComponentsInChildren<ParticleSystem>();
         _score = GameObject.Find("score").GetComponent<Text>();
         _mainSound = GameObject.Find("MainSound").GetComponent<AudioSource>();
@@ -69,11 +72,13 @@ public class ObjectGenerator : MonoBehaviour
         _usedObjectList = new List<GameObject>{position1, position2,position3,position4};
         _bubbleSpawner = GameObject.Find("BubbleSpawner").GetComponent<BubbleSpawner>();
     }
-    void Start()
+
+    private void Start()
     {
         GenerateCornerObjects();
         GenerateCenterObject();
         _mainSound.Play();
+        MenuSwitcher(false);
     }
 
     private void Update()
@@ -97,6 +102,17 @@ public class ObjectGenerator : MonoBehaviour
             }
         }
 #endif
+    }
+
+    public void MenuSwitcher(bool isActive)
+    {
+        position0.SetActive(isActive);
+        position1.SetActive(isActive);
+        position2.SetActive(isActive);
+        position3.SetActive(isActive);
+        position4.SetActive(isActive);
+        _score.enabled = isActive;
+        Text.SetActive(isActive);
     }
 
     public void GenerateCornerObjects()
@@ -175,6 +191,13 @@ public class ObjectGenerator : MonoBehaviour
     {
         if (canClick)
         {
+            if(transform.tag.Equals("Play"))
+            {
+                _playButton.SetActive(false);
+                _fxSound.PlayOneShot(_fxClips[0]);
+                MenuSwitcher(true);
+            }
+
             if (transform.tag.Equals("Exit"))
             {
                 Application.Quit();
@@ -218,7 +241,7 @@ public class ObjectGenerator : MonoBehaviour
                 
                 StartCoroutine(Delay(delayTime));
             }
-            else if (!transform.tag.Equals("Exit") & !transform.tag.Equals("SoundSwitcher"))
+            else if (!transform.tag.Equals("Exit") & !transform.tag.Equals("SoundSwitcher") & !transform.tag.Equals("Play"))
             {
                 _fxSound.PlayOneShot(_fxClips[1]);
                 _scoreCount = 0;
