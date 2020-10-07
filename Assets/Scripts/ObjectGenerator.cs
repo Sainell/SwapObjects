@@ -191,6 +191,8 @@ public class ObjectGenerator : MonoBehaviour
                 {
                     if (obj.transform.tag.Equals(tempCenterObject.tag))
                     {
+                        obj.time = 0.6f;
+                        obj.Stop();
                         obj.Play();
                         break;
                     }
@@ -203,7 +205,7 @@ public class ObjectGenerator : MonoBehaviour
                     isFinish = true;
                     delayTime = waitTimeFinish;
                     _fxSound.PlayOneShot(_fxClips[2]);
-                    _bubbleSpawner.StartSpawn(500);
+               //     _bubbleSpawner.StartSpawn(500);
                     for (int i=0;i<_fxFinish.Length;i++)
                     {
                         _fxFinish[i].Play();
