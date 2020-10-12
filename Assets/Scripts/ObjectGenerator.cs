@@ -51,7 +51,7 @@ public class ObjectGenerator : MonoBehaviour
         }
         _playButton = GameObject.Find("Play").gameObject;
         _fxFinish = GameObject.Find("FxFinish").GetComponentsInChildren<ParticleSystem>();
-        _score = GameObject.Find("score").GetComponent<Text>();
+        //_score = GameObject.Find("score").GetComponent<Text>();
         _mainSound = GameObject.Find("MainSound").GetComponent<AudioSource>();
         _fxSound = GameObject.Find("FXSounds").GetComponent<AudioSource>();
         _soundSwitcher = GameObject.Find("SoundSwitcher").GetComponentsInChildren<Image>();
@@ -111,7 +111,7 @@ public class ObjectGenerator : MonoBehaviour
         position2.SetActive(isActive);
         position3.SetActive(isActive);
         position4.SetActive(isActive);
-        _score.enabled = isActive;
+      //  _score.enabled = isActive;
         Text.SetActive(isActive);
     }
 
@@ -223,7 +223,7 @@ public class ObjectGenerator : MonoBehaviour
                 canClick = false;
                 _scoreCount++;
                 var delayTime = waitTime;
-                if(_scoreCount%10==0)
+                if(_scoreCount%5==0)
                 {
                     isFinish = true;
                     delayTime = waitTimeFinish;
@@ -254,7 +254,7 @@ public class ObjectGenerator : MonoBehaviour
                     }
                 }
             }
-            _score.text = _scoreCount.ToString();
+          //  _score.text = _scoreCount.ToString();
         }
     }
 }
