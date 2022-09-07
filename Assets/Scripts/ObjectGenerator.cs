@@ -28,6 +28,8 @@ public class ObjectGenerator : MonoBehaviour
     private GameObject _playButton;
     private GameObject _selectedModeButton;
 
+    private AdsController _adsController;
+
     public List<Sprite> imageList = new List<Sprite>();
 
     public GameObject position0;
@@ -45,6 +47,8 @@ public class ObjectGenerator : MonoBehaviour
 
     private void Awake()
     {
+        _adsController = new AdsController();
+
         for(int j=1;j<=4;j++)
         {
             _fxStars[j-1]= GameObject.Find($"FxStars{j}").GetComponent<ParticleSystem>();
@@ -86,6 +90,8 @@ public class ObjectGenerator : MonoBehaviour
             GenerateCornerObjects();
             GenerateCenterObject();
         }
+        _adsController.Initialise();
+        _adsController.BannerShow();
     }
 
     private void Update()
@@ -190,6 +196,7 @@ public class ObjectGenerator : MonoBehaviour
         {
             _fxSound.PlayOneShot(_fxClips[0]);
             isFinish = false;
+            _adsController.ShowInterstitial();
         }
         canClick = true;
     }
@@ -258,7 +265,7 @@ public class ObjectGenerator : MonoBehaviour
                
                 _usedImageList.Clear();
                 _tempImageList.Clear();
-                
+
                 StartCoroutine(Delay(delayTime));
             }
             else if (!transform.tag.Equals("Exit") & !transform.tag.Equals("SoundSwitcher") & !transform.tag.Equals("Play"))
