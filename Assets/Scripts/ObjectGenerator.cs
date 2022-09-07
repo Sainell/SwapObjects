@@ -21,11 +21,12 @@ public class ObjectGenerator : MonoBehaviour
     private ParticleSystem[] _fxFinish = new ParticleSystem[32];
     private Animator[] _animators = new Animator[4];
     private WaitForSeconds waitTime = new WaitForSeconds(1f);
-    private WaitForSeconds waitTimeFinish = new WaitForSeconds(7f);
+    private WaitForSeconds waitTimeFinish = new WaitForSeconds(5f);
     private bool canClick = true;
     private bool isFinish = false;
     private BubbleSpawner _bubbleSpawner;
     private GameObject _playButton;
+    private GameObject _selectedModeButton;
 
     public List<Sprite> imageList = new List<Sprite>();
 
@@ -50,6 +51,8 @@ public class ObjectGenerator : MonoBehaviour
             _animators[j-1] = GameObject.Find($"Position{j}").GetComponent<Animator>();
         }
         _playButton = GameObject.Find("Play").gameObject;
+        _selectedModeButton = GameObject.Find("Selection").gameObject;
+        _selectedModeButton.SetActive(false);
         _fxFinish = GameObject.Find("FxFinish").GetComponentsInChildren<ParticleSystem>();
         //_score = GameObject.Find("score").GetComponent<Text>();
         _mainSound = GameObject.Find("MainSound").GetComponent<AudioSource>();
@@ -59,10 +62,10 @@ public class ObjectGenerator : MonoBehaviour
         _fxClips[1] = Resources.Load<AudioClip>($"Sounds/fail");
         _fxClips[2] = Resources.Load<AudioClip>($"Sounds/ura");
         ObjectClick.clickEvent += CheckObjects;
-        for (int i = 1; i <= 40; i++)
-        {
-            imageList.Add(Resources.Load<Sprite>($"Images/Animals/{i}"));
-        }
+        //for (int i = 1; i <= 15; i++)
+        //{
+        //    imageList.Add(Resources.Load<Sprite>($"Images/Figures/{i}"));
+        //}
 
         img1 = position1.GetComponent<Image>();
         img2 = position2.GetComponent<Image>();
@@ -75,10 +78,14 @@ public class ObjectGenerator : MonoBehaviour
 
     private void Start()
     {
-        GenerateCornerObjects();
-        GenerateCenterObject();
-        _mainSound.Play();
         MenuSwitcher(false);
+        _mainSound.Play();
+
+        if (imageList.Count != 0)
+        {
+            GenerateCornerObjects();
+            GenerateCenterObject();
+        }
     }
 
     private void Update()
@@ -189,13 +196,26 @@ public class ObjectGenerator : MonoBehaviour
 
     public void CheckObjects(Transform transform)
     {
+        var modeA = "Animals";
+        var modeF = "Figures";
         if (canClick)
         {
-            if(transform.tag.Equals("Play"))
+            if (transform.name.Equals(modeA))
+            {
+                SetGameMode(modeA);
+            }
+
+            if (transform.name.Equals(modeF))
+            {
+                SetGameMode(modeF);
+            }
+
+            if (transform.tag.Equals("Play"))
             {
                 _playButton.SetActive(false);
-                _fxSound.PlayOneShot(_fxClips[0]);
-                MenuSwitcher(true);
+                _selectedModeButton.SetActive(true);
+
+              //  MenuSwitcher(true);
             }
 
             if (transform.tag.Equals("Exit"))
@@ -208,7 +228,7 @@ public class ObjectGenerator : MonoBehaviour
                 SoundSwitcher();
             }
 
-            if (transform.tag.Equals(tempCenterObject.tag))
+            if (transform.tag.Equals(tempCenterObject?.tag))
             {
                 foreach (var obj in _fxStars)
                 {
@@ -256,5 +276,28 @@ public class ObjectGenerator : MonoBehaviour
             }
           //  _score.text = _scoreCount.ToString();
         }
+    }
+
+    private void SetGameMode(string mode)
+    {
+        imageList.Clear();
+        var num = 0;
+        if(mode.Equals("Animals"))
+        {
+            num = 40;
+        }
+        if(mode.Equals("Figures"))
+        {
+            num = 15;
+        }
+        for (int i = 1; i <= num; i++)
+        {
+            imageList.Add(Resources.Load<Sprite>($"Images/{mode}/{i}"));
+        }
+        Start();
+        _selectedModeButton.SetActive(false);
+        position0.transform.GetChild(0).gameObject.SetActive(true);
+        MenuSwitcher(true);
+        _fxSound.PlayOneShot(_fxClips[0]);
     }
 }
