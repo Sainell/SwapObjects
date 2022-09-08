@@ -12,6 +12,8 @@ TagManager:
   - SoundSwitcher
   - Bubble
   - Play
+  - Ads
+  - AdsExit
   layers:
   - Default
   - TransparentFX

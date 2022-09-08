@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class AdsController //: BaseController
 {
-    private const AdsType ADS_TYPE_ENABLED = AdsType.Admob;
+    private AdsType ADS_TYPE_ENABLED = Application.systemLanguage == SystemLanguage.Russian ? AdsType.Yandex : AdsType.Admob;
     //APPLOVIN
     private const string ADS_BANNER_APPLOVIN = "b34139deba3d5c39";
     private const string ADS_WITH_REWARD_APPLOVIN = "72a8d8cdc16cd557";
@@ -118,7 +118,7 @@ public class AdsController //: BaseController
             //    ApplovinBannerShow();
             //    break;
             case AdsType.Yandex:
-                YandexCreateBanner();
+                YandexBannerShow();
                 break;
             default:
                 break;
@@ -185,22 +185,22 @@ public class AdsController //: BaseController
         }
         void AdmobRandomRewardedOrInterstitialRewarded()
         {
-            var rnd = Random.Range(0f, 1f);
+            //var rnd = Random.Range(0f, 1f);
 
-            if (rnd < 0.5f)
-            {
-                AdmobShowInterstitialRewarded(() =>
-                {
-                    onDone?.Invoke();
-                });
-            }
-            else
-            {
+            //if (rnd < 0.5f)
+            //{
+            //    AdmobShowInterstitialRewarded(() =>
+            //    {
+            //        onDone?.Invoke();
+            //    });
+            //}
+            //else
+            //{
                 AdmobShowRewarded(() =>
                 {
                     onDone?.Invoke();
                 });
-            }
+            //}
         }
     }
 
@@ -405,12 +405,18 @@ public class AdsController //: BaseController
         return YandexMobileAds.ScreenUtils.ConvertPixelsToDp(screenWidth);
     }
 
+    private void YandexBannerShow()
+    {
+        if (_yandexBanner == null)
+            YandexCreateBanner();
+
+        _yandexBanner.Show();
+    }
     private void YandexCreateBanner()
     {
         _yandexBanner = new YandexMobileAds.Banner(ADS_BANNER_YANDEX, YandexMobileAds.Base.AdSize.StickySize(GetScreenWidthDp()), YandexMobileAds.Base.AdPosition.BottomCenter);
         YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
         _yandexBanner.LoadAd(request);
-        _yandexBanner.Show();
     }
 
     private void YandexDestroyBanner()

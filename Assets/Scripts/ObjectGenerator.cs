@@ -27,6 +27,8 @@ public class ObjectGenerator : MonoBehaviour
     private BubbleSpawner _bubbleSpawner;
     private GameObject _playButton;
     private GameObject _selectedModeButton;
+    private GameObject _disableAdsWindow;
+    private GameObject _adsButton;
 
     private AdsController _adsController;
 
@@ -55,6 +57,9 @@ public class ObjectGenerator : MonoBehaviour
             _animators[j-1] = GameObject.Find($"Position{j}").GetComponent<Animator>();
         }
         _playButton = GameObject.Find("Play").gameObject;
+        _disableAdsWindow = GameObject.Find("DisableAdsWindow").gameObject;
+        _adsButton = GameObject.Find("ads").gameObject;
+       // _closeDisableAdsWindowButton = GameObject.Find("DisableAdsWindow").gameObject;
         _selectedModeButton = GameObject.Find("Selection").gameObject;
         _selectedModeButton.SetActive(false);
         _fxFinish = GameObject.Find("FxFinish").GetComponentsInChildren<ParticleSystem>();
@@ -82,6 +87,7 @@ public class ObjectGenerator : MonoBehaviour
 
     private void Start()
     {
+        _disableAdsWindow.SetActive(false);
         MenuSwitcher(false);
         _mainSound.Play();
 
@@ -168,6 +174,11 @@ public class ObjectGenerator : MonoBehaviour
         }
     }
 
+    public void DisableAdsWindow()
+    {
+
+    }
+
     public void SoundOn()
     {
         _soundSwitcher[0].enabled = true;
@@ -233,6 +244,16 @@ public class ObjectGenerator : MonoBehaviour
             if (transform.tag.Equals("SoundSwitcher"))
             {
                 SoundSwitcher();
+            }
+
+            if(transform.tag.Equals("Ads"))
+            {
+                ShowDisableAdsWindow();
+            }
+
+            if(transform.tag.Equals("AdsExit"))
+            {
+                _disableAdsWindow.SetActive(false);
             }
 
             if (transform.tag.Equals(tempCenterObject?.tag))
@@ -306,5 +327,24 @@ public class ObjectGenerator : MonoBehaviour
         position0.transform.GetChild(0).gameObject.SetActive(true);
         MenuSwitcher(true);
         _fxSound.PlayOneShot(_fxClips[0]);
+    }
+
+    private void ShowDisableAdsWindow()
+    {
+        _disableAdsWindow.SetActive(true);
+        var text = _disableAdsWindow.GetComponentInChildren<Text>();
+        var watchAdButton =_disableAdsWindow.GetComponentInChildren<Button>();
+        if(Application.systemLanguage == SystemLanguage.Russian)
+        {
+            text.text = "Нажми 'Просмотреть' чтобы отключить рекламу в текущей игровой сессии";
+            watchAdButton.GetComponentInChildren<Text>().text = "Просмотреть";
+        }
+
+
+        watchAdButton.onClick.AddListener(() => _adsController.ShowRewaded(() =>
+        {
+            _disableAdsWindow.SetActive(false);
+            _adsButton.SetActive(false);
+        }));
     }
 }
