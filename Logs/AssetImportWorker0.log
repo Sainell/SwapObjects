@@ -1,10 +1,10 @@
 Using pre-set license
-Built from '2020.2/release' branch; Version is '2020.2.1f1 (270dd8c3da1c) revision 2559448'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 7  (6.1.0) 64bit' Language: 'ru' Physical Memory: 16345 MB
+Built from '2020.3/release' branch; Version is '2020.3.34f1 (9a4c9c70452b) revision 10112156'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 7  (6.1.0) 64bit Professional' Language: 'ru' Physical Memory: 16345 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
- COMMAND LINE ARGUMENTS:
-D:\projects\2020.2.1f1\Editor\Unity.exe
+COMMAND LINE ARGUMENTS:
+C:\2020.3.34f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
@@ -15,14 +15,14 @@ D:/projects/SwapObjects
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53553
+62902
 Successfully changed project path to: D:/projects/SwapObjects
 D:/projects/SwapObjects
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 65.67 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 91.86 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2020.2.1f1 (270dd8c3da1c)
-[Subsystems] Discovering subsystems at path D:/projects/2020.2.1f1/Editor/Data/Resources/UnitySubsystems
+Initialize engine version: 2020.3.34f1 (9a4c9c70452b)
+[Subsystems] Discovering subsystems at path C:/2020.3.34f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path D:/projects/SwapObjects/Assets
 GfxDevice: creating device client; threaded=0
 d3d11: CreateDXGIFactory2(...) not found, fallbacking to CreateDXGIFactory1(...).
@@ -34,187 +34,127 @@ Direct3D:
     VRAM:     2977 MB
     Driver:   30.0.14.7304
 Initialize mono
-Mono path[0] = 'D:/projects/2020.2.1f1/Editor/Data/Managed'
-Mono path[1] = 'D:/projects/2020.2.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'D:/projects/2020.2.1f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56364
+Mono path[0] = 'C:/2020.3.34f1/Editor/Data/Managed'
+Mono path[1] = 'C:/2020.3.34f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/2020.3.34f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56272
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: D:/projects/2020.2.1f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: D:/projects/2020.2.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000922 seconds.
+Register platform support module: C:/2020.3.34f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000924 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 42.68 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 75.26 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.757 seconds
+- Completed reload, in  0.894 seconds
+Domain Reload Profiling:
+	ReloadAssembly (894ms)
+		BeginReloadAssembly (64ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (735ms)
+			LoadAssemblies (62ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (181ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (128ms)
+			SetupLoadedEditorAssemblies (276ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (75ms)
+				BeforeProcessingInitializeOnLoad (20ms)
+				ProcessInitializeOnLoadAttributes (140ms)
+				ProcessInitializeOnLoadMethodAttributes (35ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003523 seconds.
+Registered in 0.004132 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.81 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 1.62 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.030 seconds
+- Completed reload, in  1.527 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1528ms)
+		BeginReloadAssembly (176ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1256ms)
+			LoadAssemblies (193ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (406ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (68ms)
+			SetupLoadedEditorAssemblies (509ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (110ms)
+				ProcessInitializeOnLoadAttributes (305ms)
+				ProcessInitializeOnLoadMethodAttributes (83ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (2ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.79 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 1.49 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1537 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 71.2 MB.
-System memory in use after: 71.3 MB.
+Unloading 2333 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 94.1 MB.
+System memory in use after: 94.3 MB.
 
-Unloading 80 unused Assets to reduce memory usage. Loaded Objects now: 1960.
-Total: 2.422343 ms (FindLiveObjects: 0.197073 ms CreateObjectMapping: 0.061980 ms MarkObjects: 2.111238 ms  DeleteObjects: 0.050547 ms)
+Unloading 174 unused Assets to reduce memory usage. Loaded Objects now: 2662.
+Total: 6.515142 ms (FindLiveObjects: 0.190755 ms CreateObjectMapping: 0.082440 ms MarkObjects: 6.171543 ms  DeleteObjects: 0.068900 ms)
 
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Plugins/Android/mainTemplate.gradle
-  artifactKey: Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/mainTemplate.gradle using Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '390bbed7ee54a96b03a6089bb1679cb3') in 0.069785 seconds
-  Import took 0.072915 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 47.456451 seconds.
-  path: Assets/Plugins/Android/launcherTemplate.gradle
-  artifactKey: Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/launcherTemplate.gradle using Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f971a01a2b9b951479573e363bc726f9') in 0.001471 seconds
-  Import took 0.004251 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.866045 seconds.
-  path: Assets/Plugins/Android/proguard-user.txt.DISABLED
-  artifactKey: Guid(bb61ca39eedb7ef4d9031e367371ad01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/proguard-user.txt.DISABLED using Guid(bb61ca39eedb7ef4d9031e367371ad01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3525ff76873e7ed13854149bf1d4372') in 0.002168 seconds
-  Import took 0.030195 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 190.098672 seconds.
-  path: Assets/Plugins/Android/mobileads-unity-plugin-2.2.1.aar
-  artifactKey: Guid(2978692bec15e494d99bcca117fb4a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/mobileads-unity-plugin-2.2.1.aar using Guid(2978692bec15e494d99bcca117fb4a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9112093e20bbfad4197c6cf961db826b') in 0.002847 seconds
-  Import took 0.057060 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.050431 seconds.
-  path: Assets/Plugins/Android/mobileads-unity-plugin-2.2.1.aar
-  artifactKey: Guid(2978692bec15e494d99bcca117fb4a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/mobileads-unity-plugin-2.2.1.aar using Guid(2978692bec15e494d99bcca117fb4a7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9112093e20bbfad4197c6cf961db826b') in 0.001685 seconds
-  Import took 0.015324 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 45.965514 seconds.
-  path: Assets/Plugins/Android/mainTemplate.gradle
-  artifactKey: Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/mainTemplate.gradle using Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdca58cba59a162bb66e79cc42aec41e') in 0.001696 seconds
-  Import took 0.004515 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 92.798240 seconds.
-  path: Assets/Plugins/Android/googlemobileads-unity.aar
-  artifactKey: Guid(f6190f2d34454c59917a4c1305f171d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/googlemobileads-unity.aar using Guid(f6190f2d34454c59917a4c1305f171d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3c61d9a5f713878595afe89829d1d43') in 0.002529 seconds
-  Import took 0.005255 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.026169 seconds.
-  path: Assets/Plugins/Android/googlemobileads-unity.aar
-  artifactKey: Guid(f6190f2d34454c59917a4c1305f171d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/googlemobileads-unity.aar using Guid(f6190f2d34454c59917a4c1305f171d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3c61d9a5f713878595afe89829d1d43') in 0.001764 seconds
-  Import took 0.004580 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.806210 seconds.
-  path: Assets/Plugins/Android/YandexMobileAdsPlugin
-  artifactKey: Guid(a403e5b2ce0f54067818900ed401c26f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/YandexMobileAdsPlugin using Guid(a403e5b2ce0f54067818900ed401c26f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bc6f9a4211b621b8a0fcb28b09e0974') in 0.001859 seconds
-  Import took 0.021093 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 31.056974 seconds.
-  path: Assets/Plugins/Android/launcherTemplate.gradle
-  artifactKey: Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/launcherTemplate.gradle using Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '814b05061748cf050ae86624b5ff049d') in 0.002480 seconds
-  Import took 0.014778 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 161.584810 seconds.
-  path: Assets/Plugins/Android/launcherTemplate.gradle.DISABLED
-  artifactKey: Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/launcherTemplate.gradle.DISABLED using Guid(bf19e69cf0e10d14a8e8ae91f2f116a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b421140afea59cd003e0f1ac17d5f3fc') in 0.002321 seconds
-  Import took 0.005272 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 12.688736 seconds.
-  path: Assets/Plugins/Android/mainTemplate.gradle.DISABLED
-  artifactKey: Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Android/mainTemplate.gradle.DISABLED using Guid(8b20bf2cbbd75d847ac128f3dab32322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afaff3a79742409e909724fe783f9248') in 0.050229 seconds
-  Import took 0.074968 seconds .
-
+  path: Assets/Resources/Images/icon.png
+  artifactKey: Guid(93574fe9f2ab42546920ea48b5755a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Images/icon.png using Guid(93574fe9f2ab42546920ea48b5755a16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '234e9ca600bc880f2fff206257bdd957') in 0.148229 seconds 
 ========================================================================
 Received Prepare
-Refreshing native plugins compatible for Editor in 20.85 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 24.17 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 143 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 44.1 MB.
-System memory in use after: 44.2 MB.
+Unloading 165 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 53.9 MB.
+System memory in use after: 54.1 MB.
 
-Unloading 142 unused Assets to reduce memory usage. Loaded Objects now: 1960.
-Total: 2.378415 ms (FindLiveObjects: 0.163977 ms CreateObjectMapping: 0.049343 ms MarkObjects: 2.110336 ms  DeleteObjects: 0.053255 ms)
+Unloading 164 unused Assets to reduce memory usage. Loaded Objects now: 2668.
+Total: 6.902970 ms (FindLiveObjects: 0.166083 ms CreateObjectMapping: 0.081838 ms MarkObjects: 6.605104 ms  DeleteObjects: 0.049043 ms)
 
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 23.37 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 143 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 44.3 MB.
-System memory in use after: 44.4 MB.
-
-Unloading 142 unused Assets to reduce memory usage. Loaded Objects now: 1960.
-Total: 2.742774 ms (FindLiveObjects: 0.185640 ms CreateObjectMapping: 0.053255 ms MarkObjects: 2.445811 ms  DeleteObjects: 0.055963 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 20.87 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 143 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 44.4 MB.
-System memory in use after: 44.5 MB.
-
-Unloading 142 unused Assets to reduce memory usage. Loaded Objects now: 1960.
-Total: 2.449121 ms (FindLiveObjects: 0.163074 ms CreateObjectMapping: 0.049343 ms MarkObjects: 2.175926 ms  DeleteObjects: 0.058971 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 84.61 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 143 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 44.6 MB.
-System memory in use after: 44.7 MB.
-
-Unloading 142 unused Assets to reduce memory usage. Loaded Objects now: 1960.
-Total: 2.569470 ms (FindLiveObjects: 0.167286 ms CreateObjectMapping: 0.049644 ms MarkObjects: 2.296577 ms  DeleteObjects: 0.053857 ms)
-
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
