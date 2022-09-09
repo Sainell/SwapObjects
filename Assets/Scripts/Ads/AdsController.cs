@@ -83,7 +83,7 @@ public class AdsController //: BaseController
     {
         if (!IsAdsEnable)
             return;
-        _banner = new BannerView(ADS_BANNER, AdSize.GetLandscapeAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth), AdPosition.Bottom);
+        _banner = new BannerView(ADS_BANNER, AdSize.GetLandscapeAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth / 2), AdPosition.Bottom);
         var request = new AdRequest.Builder().Build();
         _banner.LoadAd(request);
         _banner.Hide();
@@ -98,7 +98,7 @@ public class AdsController //: BaseController
                 break;
             //case AdsType.AppLovin:
             //    ApplovinBannerHide();
-                break;
+            //    break;
             case AdsType.Yandex:
                 YandexHideBanner();
                 break;
@@ -178,7 +178,7 @@ public class AdsController //: BaseController
             //    });
             //    break;
             case AdsType.Yandex:
-                YandexShowRewarded();
+                YandexShowRewarded(onDone);
                 break;
             default:
                 break;
@@ -262,14 +262,14 @@ public class AdsController //: BaseController
     //       }
     //   });
     //}
-    public void AdmobShowInterstitialRewarded(Action onDone = null)
-    {
-        _interstitialAdWithReward.Show((Reward) =>
-        {
-            IsAdsEnable = false;
-            onDone?.Invoke();
-        });
-    }
+    //public void AdmobShowInterstitialRewarded(Action onDone = null)
+    //{
+    //    _interstitialAdWithReward.Show((Reward) =>
+    //    {
+    //        IsAdsEnable = false;
+    //        onDone?.Invoke();
+    //    });
+    //}
     public void CreateAdsRewarded()
     {
         _rewardedAd = new RewardedAd(ADS_WITH_REWARD);
@@ -402,7 +402,7 @@ public class AdsController //: BaseController
     private int GetScreenWidthDp()
     {
         int screenWidth = (int)Screen.safeArea.width;
-        return YandexMobileAds.ScreenUtils.ConvertPixelsToDp(screenWidth);
+        return YandexMobileAds.ScreenUtils.ConvertPixelsToDp(screenWidth) / 2 ;
     }
 
     private void YandexBannerShow()
@@ -457,7 +457,7 @@ public class AdsController //: BaseController
     }
 
 
-    private void YandexShowRewarded()
+    private void YandexShowRewarded(Action onDone)
     {
         var _yandexRewarded = new YandexMobileAds.RewardedAd(ADS_WITH_REWARD_YANDEX);
         YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
@@ -465,6 +465,7 @@ public class AdsController //: BaseController
 
         _yandexRewarded.OnRewardedAdLoaded += _yandexRewarded_OnRewardedAdLoaded;
         _yandexRewarded.OnRewardedAdFailedToLoad += _yandexRewarded_OnRewardedAdFailedToLoad;
+        _yandexRewarded.OnRewardedAdShown += _yandexRewarded_OnRewardedAdShown;
 
         void _yandexRewarded_OnRewardedAdFailedToLoad(object sender, YandexMobileAds.Base.AdFailureEventArgs e)
         {
@@ -480,6 +481,13 @@ public class AdsController //: BaseController
                 _yandexRewarded.Show();
 
             }
+        }
+
+        void _yandexRewarded_OnRewardedAdShown(object sender, EventArgs e)
+        {
+            _yandexRewarded.OnRewardedAdShown -= _yandexRewarded_OnRewardedAdShown;
+            IsAdsEnable = false;
+            onDone?.Invoke();
         }
     }
 
