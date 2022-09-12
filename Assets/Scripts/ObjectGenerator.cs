@@ -174,11 +174,6 @@ public class ObjectGenerator : MonoBehaviour
         }
     }
 
-    public void DisableAdsWindow()
-    {
-
-    }
-
     public void SoundOn()
     {
         _soundSwitcher[0].enabled = true;
@@ -340,11 +335,21 @@ public class ObjectGenerator : MonoBehaviour
             watchAdButton.GetComponentInChildren<Text>().text = "Просмотреть";
         }
 
+        watchAdButton.onClick.AddListener(OnClickWatchButton);
+    }
 
-        watchAdButton.onClick.AddListener(() => _adsController.ShowRewaded(() =>
-        {
-            _disableAdsWindow.SetActive(false);
-            _adsButton.SetActive(false);
-        }));
+    private void OnClickWatchButton()
+    {
+        DisableAds();
+        _adsController.ShowRewaded(() =>
+          {
+             //
+          });
+    }
+
+    public void DisableAds()
+    {
+        _disableAdsWindow.SetActive(false);
+        _adsButton.SetActive(false);
     }
 }

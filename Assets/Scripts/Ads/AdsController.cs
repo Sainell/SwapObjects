@@ -109,6 +109,9 @@ public class AdsController //: BaseController
 
     public void BannerShow()
     {
+        if (!IsAdsEnable)
+            return;
+
         switch (ADS_TYPE_ENABLED)
         {
             case AdsType.Admob:
@@ -166,6 +169,9 @@ public class AdsController //: BaseController
     }
     public void ShowRewaded(Action onDone)
     {
+        if (!IsAdsEnable)
+            return;
+
         switch (ADS_TYPE_ENABLED)
         {
             case AdsType.Admob:
@@ -479,13 +485,12 @@ public class AdsController //: BaseController
                 _yandexRewarded.OnRewardedAdLoaded -= _yandexRewarded_OnRewardedAdLoaded;
                 _yandexRewarded.OnRewardedAdFailedToLoad -= _yandexRewarded_OnRewardedAdFailedToLoad;
                 _yandexRewarded.Show();
-
             }
         }
 
         void _yandexRewarded_OnRewardedAdShown(object sender, EventArgs e)
         {
-            _yandexRewarded.OnRewardedAdShown -= _yandexRewarded_OnRewardedAdShown;
+            _yandexRewarded.OnRewardedAdShown-= _yandexRewarded_OnRewardedAdShown;
             IsAdsEnable = false;
             onDone?.Invoke();
         }
