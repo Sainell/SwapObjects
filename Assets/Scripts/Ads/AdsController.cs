@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class AdsController //: BaseController
 {
-    private AdsType ADS_TYPE_ENABLED = Application.systemLanguage == SystemLanguage.Russian ? AdsType.Yandex : AdsType.Admob;
+    private AdsType ADS_TYPE_ENABLED = AdsType.Admob; //Application.systemLanguage == SystemLanguage.Russian ? AdsType.Yandex : AdsType.Admob;
     //APPLOVIN
     private const string ADS_BANNER_APPLOVIN = "b34139deba3d5c39";
     private const string ADS_WITH_REWARD_APPLOVIN = "72a8d8cdc16cd557";
@@ -23,7 +23,7 @@ public class AdsController //: BaseController
     private const string ADS_WITH_REWARD_YANDEX = "R-M-1939154-2";
     private const string ADS_INTERSTITIAL_YANDEX = "R-M-1939154-3";
 
-    private YandexMobileAds.Banner _yandexBanner;
+ //  private YandexMobileAds.Banner _yandexBanner;
 
     private BannerView _banner;
     private InterstitialAd _interstitialAd;
@@ -54,11 +54,11 @@ public class AdsController //: BaseController
                 AdmobInitialization();
                 break;
 
-            //case AdsType.AppLovin:
-            //    AppLovinInitialisation();
-            //    break;
+            case AdsType.AppLovin:
+              //  AppLovinInitialisation();
+                break;
             case AdsType.Yandex:
-                YandexAdsInitialization();
+               // YandexAdsInitialization();
                 break;
             default:
                 break;
@@ -96,11 +96,11 @@ public class AdsController //: BaseController
             case AdsType.Admob:
                 AdMobBannerHide();
                 break;
-            //case AdsType.AppLovin:
-            //    ApplovinBannerHide();
-            //    break;
+            case AdsType.AppLovin:
+               // ApplovinBannerHide();
+                break;
             case AdsType.Yandex:
-                YandexHideBanner();
+             //   YandexHideBanner();
                 break;
             default:
                 break;
@@ -117,11 +117,11 @@ public class AdsController //: BaseController
             case AdsType.Admob:
                 AdmobBannerShow();
                 break;
-            //case AdsType.AppLovin:
-            //    ApplovinBannerShow();
-            //    break;
+            case AdsType.AppLovin:
+             //   ApplovinBannerShow();
+                break;
             case AdsType.Yandex:
-                YandexBannerShow();
+              //  YandexBannerShow();
                 break;
             default:
                 break;
@@ -135,11 +135,11 @@ public class AdsController //: BaseController
             case AdsType.Admob:
                 AdmobDestroyBanner();
                 break;
-            //case AdsType.AppLovin:
-            //    ApplovinDestroyBanner();
-            //    break;
+            case AdsType.AppLovin:
+              //  ApplovinDestroyBanner();
+                break;
             case AdsType.Yandex:
-                YandexDestroyBanner();
+             //   YandexDestroyBanner();
                 break;
             default:
                 break;
@@ -156,12 +156,12 @@ public class AdsController //: BaseController
             case AdsType.Admob:
                 AdmobShowInterstitial();
                 break;
-            //case AdsType.AppLovin:
-            //    ApplovinShowInterstitial();
-            //    break;
+            case AdsType.AppLovin:
+              //  ApplovinShowInterstitial();
+                break;
 
             case AdsType.Yandex:
-                YandexShowInterstitial();
+             //   YandexShowInterstitial();
                 break;
             default:
                 break;
@@ -184,7 +184,7 @@ public class AdsController //: BaseController
             //    });
             //    break;
             case AdsType.Yandex:
-                YandexShowRewarded(onDone);
+              //  YandexShowRewarded(onDone);
                 break;
             default:
                 break;
@@ -400,101 +400,100 @@ public class AdsController //: BaseController
 
     #region Yandex Ads
 
-    private void YandexAdsInitialization()
-    {
-        //
-    }
+    //private void YandexAdsInitialization()
+    //{
+    //    //
+    //}
 
-    private int GetScreenWidthDp()
-    {
-        int screenWidth = (int)Screen.safeArea.width;
-        return YandexMobileAds.ScreenUtils.ConvertPixelsToDp(screenWidth) / 2 ;
-    }
+    //private int GetScreenWidthDp()
+    //{
+    //    int screenWidth = (int)Screen.safeArea.width;
+    //    return YandexMobileAds.ScreenUtils.ConvertPixelsToDp(screenWidth) / 2 ;
+    //}
 
-    private void YandexBannerShow()
-    {
-        if (_yandexBanner == null)
-            YandexCreateBanner();
+    //private void YandexBannerShow()
+    //{
+    //    if (_yandexBanner == null)
+    //        YandexCreateBanner();
 
-        _yandexBanner.Show();
-    }
-    private void YandexCreateBanner()
-    {
-        _yandexBanner = new YandexMobileAds.Banner(ADS_BANNER_YANDEX, YandexMobileAds.Base.AdSize.StickySize(GetScreenWidthDp()), YandexMobileAds.Base.AdPosition.BottomCenter);
-        YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
-        _yandexBanner.LoadAd(request);
-    }
+    //    _yandexBanner.Show();
+    //}
+    //private void YandexCreateBanner()
+    //{
+    //    _yandexBanner = new YandexMobileAds.Banner(ADS_BANNER_YANDEX, YandexMobileAds.Base.AdSize.StickySize(GetScreenWidthDp()), YandexMobileAds.Base.AdPosition.BottomCenter);
+    //    YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
+    //    _yandexBanner.LoadAd(request);
+    //}
 
-    private void YandexDestroyBanner()
-    {
-        _yandexBanner?.Destroy();
-        _yandexBanner = null;
-    }
+    //private void YandexDestroyBanner()
+    //{
+    //    _yandexBanner?.Destroy();
+    //    _yandexBanner = null;
+    //}
 
-    private void YandexHideBanner()
-    {
-        _yandexBanner?.Hide();
-    }
+    //private void YandexHideBanner()
+    //{
+    //    _yandexBanner?.Hide();
+    //}
 
-    private void YandexShowInterstitial()
-    {
-        var _yandexInterstitial = new YandexMobileAds.Interstitial(ADS_INTERSTITIAL_YANDEX);
-        YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
-        _yandexInterstitial.LoadAd(request);
+    //private void YandexShowInterstitial()
+    //{
+    //    var _yandexInterstitial = new YandexMobileAds.Interstitial(ADS_INTERSTITIAL_YANDEX);
+    //    YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
+    //    _yandexInterstitial.LoadAd(request);
 
-        _yandexInterstitial.OnInterstitialLoaded += _yandexInterstitial_OnInterstitialLoaded;
-        _yandexInterstitial.OnInterstitialFailedToLoad += _yandexInterstitial_OnInterstitialFailedToLoad;
+    //    _yandexInterstitial.OnInterstitialLoaded += _yandexInterstitial_OnInterstitialLoaded;
+    //    _yandexInterstitial.OnInterstitialFailedToLoad += _yandexInterstitial_OnInterstitialFailedToLoad;
 
-        void _yandexInterstitial_OnInterstitialLoaded(object sender, EventArgs e)
-        {
-            if (_yandexInterstitial.IsLoaded())
-            {
-                _yandexInterstitial.Show();
-                _yandexInterstitial.OnInterstitialLoaded -= _yandexInterstitial_OnInterstitialLoaded;
+    //    void _yandexInterstitial_OnInterstitialLoaded(object sender, EventArgs e)
+    //    {
+    //        if (_yandexInterstitial.IsLoaded())
+    //        {
+    //            _yandexInterstitial.Show();
+    //            _yandexInterstitial.OnInterstitialLoaded -= _yandexInterstitial_OnInterstitialLoaded;
 
-            }
-        }
+    //        }
+    //    }
 
-        void _yandexInterstitial_OnInterstitialFailedToLoad(object sender, YandexMobileAds.Base.AdFailureEventArgs e)
-        {
-            _yandexInterstitial.OnInterstitialLoaded -= _yandexInterstitial_OnInterstitialLoaded;
-        }
+    //    void _yandexInterstitial_OnInterstitialFailedToLoad(object sender, YandexMobileAds.Base.AdFailureEventArgs e)
+    //    {
+    //        _yandexInterstitial.OnInterstitialLoaded -= _yandexInterstitial_OnInterstitialLoaded;
+    //    }
 
-    }
+    //}
 
+    //private void YandexShowRewarded(Action onDone)
+    //{
+    //    var _yandexRewarded = new YandexMobileAds.RewardedAd(ADS_WITH_REWARD_YANDEX);
+    //    YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
+    //    _yandexRewarded.LoadAd(request);
 
-    private void YandexShowRewarded(Action onDone)
-    {
-        var _yandexRewarded = new YandexMobileAds.RewardedAd(ADS_WITH_REWARD_YANDEX);
-        YandexMobileAds.Base.AdRequest request = new YandexMobileAds.Base.AdRequest.Builder().Build();
-        _yandexRewarded.LoadAd(request);
+    //    _yandexRewarded.OnRewardedAdLoaded += _yandexRewarded_OnRewardedAdLoaded;
+    //    _yandexRewarded.OnRewardedAdFailedToLoad += _yandexRewarded_OnRewardedAdFailedToLoad;
+    //    _yandexRewarded.OnRewardedAdShown += _yandexRewarded_OnRewardedAdShown;
 
-        _yandexRewarded.OnRewardedAdLoaded += _yandexRewarded_OnRewardedAdLoaded;
-        _yandexRewarded.OnRewardedAdFailedToLoad += _yandexRewarded_OnRewardedAdFailedToLoad;
-        _yandexRewarded.OnRewardedAdShown += _yandexRewarded_OnRewardedAdShown;
+    //    void _yandexRewarded_OnRewardedAdFailedToLoad(object sender, YandexMobileAds.Base.AdFailureEventArgs e)
+    //    {
+    //        _yandexRewarded.OnRewardedAdLoaded -= _yandexRewarded_OnRewardedAdLoaded;
+    //        _yandexRewarded.OnRewardedAdFailedToLoad -= _yandexRewarded_OnRewardedAdFailedToLoad;
+    //    }
+    //    void _yandexRewarded_OnRewardedAdLoaded(object sender, EventArgs e)
+    //    {
+    //        if (_yandexRewarded.IsLoaded())
+    //        {
+    //            _yandexRewarded.OnRewardedAdLoaded -= _yandexRewarded_OnRewardedAdLoaded;
+    //            _yandexRewarded.OnRewardedAdFailedToLoad -= _yandexRewarded_OnRewardedAdFailedToLoad;
+    //            _yandexRewarded.Show();
+    //        }
+    //    }
 
-        void _yandexRewarded_OnRewardedAdFailedToLoad(object sender, YandexMobileAds.Base.AdFailureEventArgs e)
-        {
-            _yandexRewarded.OnRewardedAdLoaded -= _yandexRewarded_OnRewardedAdLoaded;
-            _yandexRewarded.OnRewardedAdFailedToLoad -= _yandexRewarded_OnRewardedAdFailedToLoad;
-        }
-        void _yandexRewarded_OnRewardedAdLoaded(object sender, EventArgs e)
-        {
-            if (_yandexRewarded.IsLoaded())
-            {
-                _yandexRewarded.OnRewardedAdLoaded -= _yandexRewarded_OnRewardedAdLoaded;
-                _yandexRewarded.OnRewardedAdFailedToLoad -= _yandexRewarded_OnRewardedAdFailedToLoad;
-                _yandexRewarded.Show();
-            }
-        }
-
-        void _yandexRewarded_OnRewardedAdShown(object sender, EventArgs e)
-        {
-            _yandexRewarded.OnRewardedAdShown-= _yandexRewarded_OnRewardedAdShown;
-            IsAdsEnable = false;
-            onDone?.Invoke();
-        }
-    }
+    //    void _yandexRewarded_OnRewardedAdShown(object sender, EventArgs e)
+    //    {
+    //        _yandexRewarded.OnRewardedAdShown-= _yandexRewarded_OnRewardedAdShown;
+    //        IsAdsEnable = false;
+    //        onDone?.Invoke();
+    //    }
+    //}
 
     #endregion
 }
