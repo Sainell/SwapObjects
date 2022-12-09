@@ -215,6 +215,11 @@ public class AdsController //: BaseController
 
     private void AdmobInitialization()
     {
+        RequestConfiguration requestConfiguration = new RequestConfiguration.Builder()
+            .SetTagForChildDirectedTreatment(TagForChildDirectedTreatment.True)
+            .SetMaxAdContentRating(MaxAdContentRating.G).build();
+
+        MobileAds.SetRequestConfiguration(requestConfiguration);
         MobileAds.Initialize(status => { });
         CreateAdsInterstitial();
      //   CreateAdsInterstitialWithReward();
