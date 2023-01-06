@@ -43,7 +43,10 @@ public class AdsController //: BaseController
             _isAdsEnable = value;
 
             if (!value)
+            {
+                BannerHide();
                 DestroyAdsBanner();
+            }
         }
     }
     public  void Initialise()
