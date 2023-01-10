@@ -97,7 +97,6 @@ public class ObjectGenerator : MonoBehaviour
             GenerateCenterObject();
         }
         _adsController.Initialise();
-        _adsController.BannerShow();
     }
 
     private void Update()

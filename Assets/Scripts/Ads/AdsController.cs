@@ -66,7 +66,8 @@ public class AdsController //: BaseController
             default:
                 break;
         }
-      //  base.Initialise();
+        BannerShow();
+        //  base.Initialise();
     }
     //public override void Execute()
     //{
@@ -262,7 +263,16 @@ public class AdsController //: BaseController
         if (_interstitialAd == null)
             CreateAdsInterstitial();
         if (_interstitialAd.IsLoaded())
+        {
+            _interstitialAd.OnAdClosed += OnInterstitialShowed;
             _interstitialAd.Show();
+        }
+    }
+
+    private void OnInterstitialShowed(object sender, EventArgs e)
+    {
+        _interstitialAd.OnAdClosed -= OnInterstitialShowed;
+        CreateAdsInterstitial();
     }
 
     //public void CreateAdsInterstitialWithReward()
